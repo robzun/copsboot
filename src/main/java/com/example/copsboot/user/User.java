@@ -1,18 +1,9 @@
 package com.example.copsboot.user;
 
 import com.example.orm.jpa.AbstractEntity;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
 
-import java.lang.annotation.Annotation;
-import java.util.Set;
-import java.util.UUID;
 import com.example.orm.jpa.UserId;
 
 @Entity
@@ -20,41 +11,25 @@ import com.example.orm.jpa.UserId;
 public class User extends AbstractEntity<UserId> {
 
     private String email;
-    private String password;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @NotNull
-    private Set<UserRole> roles;
+    private AuthServerId authServerId;
+    private String mobileToken;
 
     protected User() {}
 
-    public User(UserId id, String email, String password, Set<UserRole> roles) {
+    public User(UserId id, String email,AuthServerId authServerId,String mobileToken {
         super(id);
         this.email = email;
-        this.password = password;
-        this.roles = roles;
+        this.authServerId = authServerId;
+        this.mobileToken = mobileToken;
     }
 
     public String getEmail() {
         return email;
     }
-
-    public String getPassword() {
-        return password;
+    public AuthServerId getAuthServerId() {
+        return authServerId;
     }
-
-    public Set<UserRole> getRoles() {
-        return roles;
-    }
-
-    @Override
-    public String name() {
-        return "";
-    }
-
-    @Override
-    public Class<? extends Annotation> annotationType() {
-        return null;
+    public String getMobileToken() {
+        return mobileToken;
     }
 }
