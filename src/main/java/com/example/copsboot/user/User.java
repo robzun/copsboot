@@ -6,6 +6,8 @@ import jakarta.persistence.Table;
 
 import com.example.orm.jpa.UserId;
 
+import java.lang.annotation.Annotation;
+
 @Entity
 @Table(name = "copsboot_user")
 public class User extends AbstractEntity<UserId> {
@@ -16,7 +18,7 @@ public class User extends AbstractEntity<UserId> {
 
     protected User() {}
 
-    public User(UserId id, String email,AuthServerId authServerId,String mobileToken {
+    public User(UserId id, String email,AuthServerId authServerId,String mobileToken) {
         super(id);
         this.email = email;
         this.authServerId = authServerId;
@@ -31,5 +33,15 @@ public class User extends AbstractEntity<UserId> {
     }
     public String getMobileToken() {
         return mobileToken;
+    }
+
+    @Override
+    public String name() {
+        return "";
+    }
+
+    @Override
+    public Class<? extends Annotation> annotationType() {
+        return null;
     }
 }
